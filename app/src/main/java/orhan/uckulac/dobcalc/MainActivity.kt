@@ -2,6 +2,8 @@ package orhan.uckulac.dobcalc
 
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
+import orhan.uckulac.dobcalc.databinding.ActivityMainBinding
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -9,17 +11,19 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     private var tvSelectedDate: TextView? = null
     private var tvDaysInMinutes: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val btnDatePicker: Button = findViewById(R.id.btnDatePicker)
-        tvSelectedDate = findViewById(R.id.tvSelectedDate)
-        tvDaysInMinutes = findViewById(R.id.tvDaysInMinutes)
+        val btnDatePicker: Button = binding.btnDatePicker
+        tvSelectedDate = binding.tvSelectedDate
+        tvDaysInMinutes = binding.tvDaysInMinutes
 
         btnDatePicker.setOnClickListener {
             clickDatePicker()
